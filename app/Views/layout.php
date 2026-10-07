@@ -22,6 +22,14 @@
             </div>
 
         </div>
+        <?php if (session()->get('logged_in')): ?>
+            <form action="<?= site_url('logout') ?>" method="post">
+                <?= csrf_field() ?>
+                <button type="submit">Logout</button>
+            </form>
+        <?php else: ?>
+            <a href="<?= site_url('login') ?>">Login</a>
+        <?php endif; ?>
     </nav>
 
     <div class="container mt-4">

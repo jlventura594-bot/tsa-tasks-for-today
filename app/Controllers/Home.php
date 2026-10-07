@@ -11,8 +11,10 @@ class Home extends BaseController
     {
         $taskModel = new TaskModel();
 
+        // In index()
         $data['tasks'] = $taskModel
             ->where('task_date', date('Y-m-d'))
+            ->where('is_archived', 0)
             ->findAll();
 
         return view('welcome_tasks', $data);
@@ -22,7 +24,9 @@ class Home extends BaseController
     {
         $taskModel = new TaskModel();
 
+        // In tasks()
         $data['tasks'] = $taskModel
+            ->where('is_archived', 0)
             ->orderBy('task_date', 'ASC')
             ->findAll();
 
